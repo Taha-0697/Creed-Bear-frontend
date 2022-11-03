@@ -12,7 +12,7 @@ const getAllusersPaginated = (PageNo, PageSize)=>{
     return http.get(`getallusers/paginate?PageSize=${PageSize}&PageNo=${PageNo}`)
 }
 
-const createUser = (data) => {
+const createUser = data => {
   return http.post("createuser", data);
 };
 

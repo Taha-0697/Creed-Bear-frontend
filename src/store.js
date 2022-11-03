@@ -1,12 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit'
+import loginReducer from "./slices/loginSlice"
 
-const reducer = {
-    
-}
 
 const store = configureStore({
-  reducer: reducer,
-  devTools: true,
+ reducer:{
+    userlogin:loginReducer
+ }
 })
 
 export default store;
