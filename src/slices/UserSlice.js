@@ -1,10 +1,15 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import UserServices from '../services/UserService';
 
-const initialState = [];
+const initialState={
+    loading:false,
+    userdata:{},
+    error: null,
+};
+
 
 export const createUser= createAsyncThunk(
-    "Users/createUser",
+    "userdetails/createUser",
     async({first_name,last_name,avatar,email,id})=>{
        try {
          const res = await UserServices.createUser({
@@ -22,10 +27,22 @@ export const createUser= createAsyncThunk(
 )
 
 export const getAllUsers = createAsyncThunk(
-  "Users/getAllUsers",
+  "userdetails/getAllUsers",
   async () => {
     try {
         const res = await UserServices.getAllusers();
+        return res.data;
+    } catch (error) {
+        console.log(error)
+    }
+  }
+);
+
+export const removeUser = createAsyncThunk(
+  "userdetails/removeUser",
+  async ({id}) => {
+    try {
+        const res = await UserServices.removeUserById(id);
         return res.data;
     } catch (error) {
         console.log(error)
@@ -47,12 +64,20 @@ export const getAllUsersPaginated = createAsyncThunk(
 
 
 const UserSlice = createSlice({
-    name: "Users",
+    name: "userdetails",
     initialState,
     reducers:{},
     extraReducers:{
         [createUser.fulfilled]: (state, action) => {
-            state.push(action.payload);
+            state.userdata =action.payload;
+        },
+
+        [getAllUsers.fulfilled]: (state, action) => {
+            state.userdata =action.payload;
+        },
+
+        [removeUser.fulfilled]: (state, action) => {
+            state.userdata =action.payload;
         },
     }
 })

@@ -13,12 +13,14 @@ const Button = (props) => {
     hover,
     style,
     customClass,
+
     ...restProps
   } = props;
   return (
     <>
       <button
         style={{ background: backgroundColor, ...style }}
+        type={"submit"}
         className={`${classList.buttonContainer} ${hoverLight && classList.hover_light || hover && classList.hover || ""}  ${customClass}`}
         {...restProps}>
         <Paragraph

@@ -1,16 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import Section from "./components/Section/Section";
-import Dashboard from "./pages/Dashboard";
-import LoginPage from './pages/LoginPage';
-import ProtectedRoute from './pages/routes/ProtectedRoute';
+import Dashboard from "./pages/Dashboard/Dashboard";
+import LoginPage from './pages/Login/LoginPage';
 import Navbar from './components/Navbar/Navbar';
+import ProtectedRoute from "./routes/ProtectedRoute";
 
 const App = () => {
     return (
-        <Router>
+       <div>
+         <Router>
        <Navbar/>
-     <Section>
+     <Section background={"Green"}>
         <Routes>
           <Route path='/' element={<LoginPage/>} />
           <Route path='/login' element={<LoginPage/>} />
@@ -18,9 +19,9 @@ const App = () => {
             <Route path='/createuser' element={<Dashboard/>} />           
           </Route>
         </Routes>
-
      </Section>
     </Router>
+       </div>
     );
 };
 
