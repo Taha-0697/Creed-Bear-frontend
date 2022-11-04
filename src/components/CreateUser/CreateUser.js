@@ -1,37 +1,32 @@
 import React, { useEffect } from 'react'
-import {  Checkbox, Form, Input } from 'antd';
-import { loginAsAdmin } from '../../slices/loginSlice';
+import {  Checkbox, Form, Input, InputNumber } from 'antd';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import classList from "./CreateUser.module.scss";
+import { createUser } from './../../slices/UserSlice';
 import Button from "./../Button/Button"
-import classList from "./LoginForm.module.scss";
 
-const LoginForm = () => {
 
-    let {data,error,loading} = useSelector((state) => state.userlogin)
+const CreateUser = () => {
+    let {userdata,error,loading} = useSelector((state) => state.userdetails)
     const dispatch = useDispatch()
-    const navigate = useNavigate()
+    const navigate = useNavigate()    
 
-  
-  useEffect(() => {
-    if (data) {
+  const onFinish = (values) => {
+    dispatch(createUser(values));
+    if (values) {
       navigate('/allusers')
     }
-    
-  }, [navigate, data])
-
-    const onFinish = (values) => {
-    console.log('Success:', values);
-    dispatch(loginAsAdmin(values))
   };
+
   const onFinishFailed = (errorInfo) => {
     console.log('Failed:', errorInfo);
   };
 
   return (
-  <div className={classList.login_wrapper}>
+     <div className={classList.login_wrapper}>
       <Form
-        name="Login"
+        name="User"
         labelCol={{
           span: 8,
         }}
@@ -45,14 +40,28 @@ const LoginForm = () => {
         onFinishFailed={onFinishFailed}
         autoComplete="off"
       >
+
+ 
         <Form.Item
-          label="Email"
-          name="email"
+          label="First Name"
+          name="first_name"
           rules={[
             {
-              type: 'email',
               required: true,
-              message: 'Please input a valid admin email!',
+              message: 'Please input your first name!',
+            },
+          ]}
+        >
+          <Input />
+        </Form.Item>
+
+             <Form.Item
+          label="Last Name"
+          name="last_name"
+          rules={[
+            {
+              required: true,
+              message: 'Please input your last name!',
             },
           ]}
         >
@@ -60,27 +69,25 @@ const LoginForm = () => {
         </Form.Item>
 
         <Form.Item
-          label="Password"
-          name="password"
+          label="Email"
+          name="email"
           rules={[
             {
+              type: 'email',
               required: true,
-              message: 'Please input your password!',
+              message: 'Please input a valid email!',
             },
           ]}
         >
-          <Input.Password />
+          <Input />
         </Form.Item>
-
+    
         <Form.Item
-          name="remember"
-          valuePropName="checked"
-          wrapperCol={{
-            offset: 8,
-            span: 8,
-          }}
+          label="Avatar"
+          name="avatar"
+          
         >
-          <Checkbox>Remember me</Checkbox>
+          <Input />
         </Form.Item>
 
         <Form.Item
@@ -90,7 +97,7 @@ const LoginForm = () => {
           }}
         >
           <Button type="submit">
-            Login
+            Create New User
           </Button>
         </Form.Item>
       </Form>
@@ -98,4 +105,4 @@ const LoginForm = () => {
   )
 }
 
-export default LoginForm
+export default CreateUser

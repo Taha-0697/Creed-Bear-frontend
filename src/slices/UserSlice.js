@@ -50,6 +50,18 @@ export const removeUser = createAsyncThunk(
   }
 );
 
+export const updateUser = createAsyncThunk(
+  "userdetails/updateUser",
+  async ({id}) => {
+    try {
+        const res = await UserServices.updateUser(id);
+        return res.data;
+    } catch (error) {
+        console.log(error)
+    }
+  }
+);
+
 export const getAllUsersPaginated = createAsyncThunk(
   "Users/getAllUsersPaginated",
   async ({PageNo,PageSize}) => {

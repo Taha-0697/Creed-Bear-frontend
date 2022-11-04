@@ -10,13 +10,23 @@ const ProtectedRoute = () => {
   // show unauthorized screen if no user is found in redux store
   if (!data) {
     return (
-      <div className='unauthorized' style={{height:"100%" , display:"flex", alignItems:"center",justifyContent:"center",flexWrap:"wrap",flex:"1",}}>
-        <Header fontSize={50}>Unauthorized 😌😌</Header>
+      <div  style={{ display:"flex", alignItems:"center",justifyContent:"center",flexWrap:"wrap",flex:"1",}}>
+        {/* <Header fontSize={50}>Unauthorized 😌😌</Header>
         <Paragraph fontSize={50} className="para">        
            <NavLink to='/' style={{margin:"auto"}}>
             <Button fontSize={30}>Login</Button>
           </NavLink> to gain access
-        </Paragraph>
+        </Paragraph> */}
+        <Header>
+          Unauthorized 😌😌 Kindly
+        </Header>
+           <NavLink to='/' style={{margin:"0 1rem"}}>
+            <Button fontSize={20}>Login</Button>
+          </NavLink>
+        <Header>
+          to gain access
+        </Header>
+          
       </div>
     )
   }
