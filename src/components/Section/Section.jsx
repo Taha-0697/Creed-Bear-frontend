@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Section = ({
   background,
   children,
-  flex = false,
+  flex = false, 
   style = {},
   margin,
   padding,

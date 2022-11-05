@@ -11,12 +11,6 @@ const ProtectedRoute = () => {
   if (!data) {
     return (
       <div  style={{ display:"flex", alignItems:"center",justifyContent:"center",flexWrap:"wrap",flex:"1",}}>
-        {/* <Header fontSize={50}>Unauthorized 😌😌</Header>
-        <Paragraph fontSize={50} className="para">        
-           <NavLink to='/' style={{margin:"auto"}}>
-            <Button fontSize={30}>Login</Button>
-          </NavLink> to gain access
-        </Paragraph> */}
         <Header>
           Unauthorized 😌😌 Kindly
         </Header>

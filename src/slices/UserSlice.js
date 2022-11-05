@@ -38,11 +38,23 @@ export const getAllUsers = createAsyncThunk(
   }
 );
 
-export const removeUser = createAsyncThunk(
-  "userdetails/removeUser",
-  async ({id}) => {
+export const getUserById = createAsyncThunk(
+  "userdetails/getUserById",
+  async (payload) => {
     try {
-        const res = await UserServices.removeUserById(id);
+        const res = await UserServices.getUserbyId(payload);
+        return res.data;
+    } catch (error) {
+        console.log(error)
+    }
+  }
+);
+
+export const removeUserById = createAsyncThunk(
+  "removeUserById",
+  async (payload) => {
+    try {
+        const res = await UserServices.removeUserById(payload);
         return res.data;
     } catch (error) {
         console.log(error)
@@ -52,9 +64,9 @@ export const removeUser = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   "userdetails/updateUser",
-  async ({id}) => {
+  async (payload) => {
     try {
-        const res = await UserServices.updateUser(id);
+        const res = await UserServices.updateUser(payload);
         return res.data;
     } catch (error) {
         console.log(error)
@@ -75,6 +87,7 @@ export const getAllUsersPaginated = createAsyncThunk(
 );
 
 
+
 const UserSlice = createSlice({
     name: "userdetails",
     initialState,
@@ -88,8 +101,12 @@ const UserSlice = createSlice({
             state.userdata =action.payload;
         },
 
-        [removeUser.fulfilled]: (state, action) => {
-            state.userdata =action.payload;
+        [removeUserById.fulfilled]: (state, action) => {
+           state.userdata = action.payload
+        },
+
+        [getUserById.fulfilled]: (state, action) => {
+           state.userdata = action.payload
         },
     }
 })

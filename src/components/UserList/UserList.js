@@ -2,13 +2,16 @@ import { Space, Table, Tag } from 'antd';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import Paragraph from '../Paragraph/Paragraph';
-import { getAllUsers, getAllUsersPaginated, removeUser, updateUser } from './../../slices/UserSlice';
-import Button from './../Button/Button';
+import { getAllUsers, removeUserById, updateUser, createUser } from './../../slices/UserSlice';
 import { useNavigate } from 'react-router-dom';
+import classList  from './UserList.module.scss';
+
+
 const { Column, ColumnGroup } = Table;
 
 const UserList = () => {
      const { userdata,loading,error  } = useSelector((state) => state.userdetails)
+     const [userdetails,setUserdetails] = useState();
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
@@ -16,7 +19,7 @@ const UserList = () => {
         dispatch(getAllUsers())
     },[])
   
-
+    
     const col = [
             {
             title: 'ID',
@@ -41,6 +44,27 @@ const UserList = () => {
             title: 'Action',
             dataIndex: 'Action',
             key: 'Action',
+            render: (_, record) => {
+                return (
+                    <Space size="middle">
+                        <button
+                            onClick={()=>{
+                                setUserdetails({...userdetails , record})
+                              navigate("/edituser/" + record.id)
+                            }}
+                            key = {record.key}
+                        >Edit</button>
+                        
+                         <button
+                            onClick={()=>{
+                                const id = record.id 
+                                dispatch(removeUserById(id))
+                            }}
+                            key = {record.key}
+                        >Delete</button>
+                    </Space>
+                )
+            }
          
         }
     ]
@@ -51,21 +75,20 @@ const UserList = () => {
 
   return (
      <>
-     <p>
-        Create a New User ?
-     </p>
-
-      <button onClick={()=>{
+        <Paragraph className={classList.userCreate} style={{marginBottom:"0"}}
+            onClick={()=>{
                     navigate('/createuser')
                 }}>
-                    Create New User
-        </button>
+            Click Me Create New User 
+        </Paragraph>
+
      
      <Table  
             loading={loading}
             columns={col} 
             dataSource= {
             userData?.map((a,item)=>{
+                
             return {
                 key:item,
                 id:a.id,

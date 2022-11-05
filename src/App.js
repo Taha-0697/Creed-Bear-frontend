@@ -5,6 +5,7 @@ import Dashboard from "./pages/Dashboard/Dashboard";
 import LoginPage from './pages/Login/LoginPage';
 import ProtectedRoute from "./routes/ProtectedRoute";
 import Users from './pages/User/Users';
+import Edit from './pages/Edit/Edit';
 
 const App = () => {
     return (
@@ -16,6 +17,7 @@ const App = () => {
               <Route path='/login' element={<LoginPage/>} />
               <Route element={<ProtectedRoute />}>
                 <Route path='/createuser' element={<Dashboard/>} />           
+                <Route path='/edituser/:id' element={<Edit/>} />           
                 <Route path='/allusers' element={<Users />} />           
               </Route>
             </Routes>
