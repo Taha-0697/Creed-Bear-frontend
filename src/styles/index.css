@@ -17,10 +17,6 @@ code {
   margin: 0 !important;
 }
 
-.ant-form-item-control-input-content > button {
-  margin: 0 0.2rem;
-}
-
 .ant-table-wrapper{
   margin-top:2rem;
     font-feature-settings: 'tnum', "tnum";

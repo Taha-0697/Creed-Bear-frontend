@@ -64,11 +64,9 @@ export const removeUserById = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   "userdetails/updateUser",
-  async ({first_name,last_name,avatar,email,id}) => {
+  async (payload) => {
     try {
-        const res = await UserServices.updateUser(id,{
-          first_name,last_name,avatar,email,id
-        });
+        const res = await UserServices.updateUser(payload);
         return res.data;
     } catch (error) {
         console.log(error)

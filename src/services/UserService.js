@@ -16,8 +16,9 @@ const createUser = data => {
   return http.post("createuser", data);
 };
 
-const updateUser = (id, data) => {
-  return http.put(`/updateuser/${id}`, data);
+const updateUser = (data) => {
+  console.log(data, "nuiduwhduwh")
+  return http.put(`/updateuser/${data?.id}`, data);
 };
 
 const removeUserById = id => {

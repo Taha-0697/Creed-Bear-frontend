@@ -24,7 +24,7 @@ const UserList = () => {
     },[])
 
     const onFinish = (values) => {
-
+//        console.log(values)
         if(flag.status === false){
             setFlag({...flag , status:true})
             dispatch(createUser(values));
@@ -32,14 +32,13 @@ const UserList = () => {
                 navigate('/createUser')
             }
         }else if(flag.status=== true){
-            console.log(id, values)
-            dispatch(updateUser(values.id, values));
-            //  if (values) {
-            //     navigate('/editUser')
-            // }
+
+            dispatch(updateUser(values));
+             if (values) {
+                navigate('/editUser')
+            }
         }
 
-        console.log(flag.status);
     };
 
     const onFinishFailed = (errorInfo) => {
@@ -79,17 +78,7 @@ const UserList = () => {
                     return (
                         <Space size="middle">                   
                             <button
-                             onClick={() => {
-                                            const nextURL = window.location.href + '/' + record.id;
-                                            const nextTitle = 'My new page title';
-                                            const nextState = { additionalInformation: 'Updated the URL with JS' };
-
-                                            // This will create a new entry in the browser's history, without reloading
-                                            window.history.pushState(nextState, nextTitle, nextURL);
-
-                                            // This will replace the current entry in the browser's history, without reloading
-                                            window.history.replaceState(nextState, nextTitle, nextURL);
-                                            
+                             onClick={() => {             
                                             setFlag({...flag , status: true , data: record})
                                             form.setFieldsValue({
                                                 id: record.id,
@@ -197,14 +186,9 @@ const UserList = () => {
                     }}
                     >
                     <Button type="submit">
-                        {flag.status === false ? 'Create' : 'Edit'}
+                        {flag.status === false ? 'Create' : 'Update'}
                     </Button>
 
-                    <Button 
-                        type="reset"
-                        >
-                        Reset
-                    </Button>
                     </Form.Item>
                 </Form>
             </Panel>
