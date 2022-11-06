@@ -64,9 +64,11 @@ export const removeUserById = createAsyncThunk(
 
 export const updateUser = createAsyncThunk(
   "userdetails/updateUser",
-  async (payload) => {
+  async ({first_name,last_name,avatar,email,id}) => {
     try {
-        const res = await UserServices.updateUser(payload);
+        const res = await UserServices.updateUser(id,{
+          first_name,last_name,avatar,email,id
+        });
         return res.data;
     } catch (error) {
         console.log(error)
@@ -91,7 +93,12 @@ export const getAllUsersPaginated = createAsyncThunk(
 const UserSlice = createSlice({
     name: "userdetails",
     initialState,
-    reducers:{},
+    reducers:{
+        editUser: (state, action) => {
+                debugger
+                state.userdata = action.payload
+        },
+    },
     extraReducers:{
         [createUser.fulfilled]: (state, action) => {
             state.userdata =action.payload;
@@ -111,4 +118,5 @@ const UserSlice = createSlice({
     }
 })
 
+export const {editUser} = UserSlice.actions
 export default UserSlice.reducer

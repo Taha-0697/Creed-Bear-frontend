@@ -20,3 +20,12 @@ code {
 .ant-form-item-control-input-content > button {
   margin: 0 0.2rem;
 }
+
+.ant-table-wrapper{
+  margin-top:2rem;
+    font-feature-settings: 'tnum', "tnum";
+    background-color: #fafafa;
+    border: 1px solid #d9d9d9;
+    border-bottom: 0;
+    border-radius: 2px;
+}
