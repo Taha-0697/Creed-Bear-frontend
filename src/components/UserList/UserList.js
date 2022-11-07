@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Table, Space, Collapse, Form, Input } from 'antd';
+import { Table, Space, Collapse, Form, Input, Upload } from 'antd';
 import { getAllUsers, removeUserById } from '../../slices/UserSlice';
 import { useDispatch, useSelector } from 'react-redux';
 import Button from './../Button/Button';
@@ -77,7 +77,8 @@ const UserList = () => {
                 render: (_, record) => {
                     return (
                         <Space size="middle">                   
-                            <button
+                            <Button
+                            backgroundColor={"#008CBA"}
                              onClick={() => {             
                                             setFlag({...flag , status: true , data: record})
                                             form.setFieldsValue({
@@ -88,15 +89,16 @@ const UserList = () => {
                                                 avatar: record.avatar
                                             });
                                         }}
-                            >Edit</button>
+                            >Edit</Button>
                             
-                            <button
+                            <Button
+                            backgroundColor={"red"}
                                 onClick={()=>{
                                     const id = record.id 
                                     dispatch(removeUserById(id))
                                 }}
                                 key = {record.key}
-                            >Delete</button>
+                            >Delete</Button>
                         </Space>
                     )
                 }
@@ -174,11 +176,10 @@ const UserList = () => {
                     <Form.Item
                     label="Avatar"
                     name="avatar"
-                    
                     >
-                    <Input />
+                        <Input/>
                     </Form.Item>
-
+                   
                     <Form.Item
                     wrapperCol={{
                         offset: 8,

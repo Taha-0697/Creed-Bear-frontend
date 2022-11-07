@@ -5,7 +5,7 @@ import Navbar from './../../components/Navbar/Navbar';
 const Edit = () => {
   return (
     <>
-    <Navbar head="Edit User"/>
+    <Navbar head=" "/>
     <EditUser/>
     </>
   )
