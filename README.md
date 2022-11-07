@@ -3,7 +3,7 @@
 ## https://creed-bear-backend.herokuapp.com/
 
 ### email: admin123@gmail.com
-### passwprd: admin123
+### password: admin123
 
 ### A Simnple CRUD app 
 - Create User
