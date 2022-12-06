@@ -200,7 +200,7 @@ const UserList = () => {
                 <Table  
                     loading={loading}
                     columns={col} 
-                   pagination={{ defaultPageSize: 5 ,total: 10, pageSizeOptions: ["5", "10", "15" , "20"], showSizeChanger: true,  }} 
+                   pagination={{ defaultPageSize: 5 , pageSizeOptions: ["5", "10", "15" , "20"], showSizeChanger: true,  }} 
     
                     dataSource= {
                     userData?.map((a,item)=>{    
