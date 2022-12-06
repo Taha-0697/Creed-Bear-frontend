@@ -1,6 +1,5 @@
 # Creed-Bear-Frontend
 
-## https://creed-bear-backend.herokuapp.com/
 
 ### email: admin123@gmail.com
 ### password: admin123
