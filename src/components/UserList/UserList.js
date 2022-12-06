@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import Button from './../Button/Button';
 import { createUser, updateUser } from './../../slices/UserSlice';
 import { useNavigate, useParams } from 'react-router-dom';
+import classList from './UserList.module.scss'
 
 const UserList = () => {
     const { Panel } = Collapse;
@@ -75,6 +76,7 @@ const UserList = () => {
                 dataIndex: 'Action',
                 key: 'Action',
                 render: (_, record) => {
+                   // console.log(record)
                     return (
                         <Space size="middle">                   
                             <Button
@@ -86,7 +88,7 @@ const UserList = () => {
                                                 first_name: record.first_name,
                                                 last_name: record.last_name,
                                                 email: record.email,
-                                                avatar: record.avatar
+                                                avatar: record.avatar.props.src
                                             });
                                         }}
                             >Edit</Button>
@@ -198,6 +200,8 @@ const UserList = () => {
                 <Table  
                     loading={loading}
                     columns={col} 
+                   pagination={{ defaultPageSize: 5 ,total: 10, pageSizeOptions: ["5", "10", "15" , "20"], showSizeChanger: true,  }} 
+    
                     dataSource= {
                     userData?.map((a,item)=>{    
                             return {
@@ -206,7 +210,7 @@ const UserList = () => {
                                 first_name: a.first_name,
                                 last_name: a.last_name,
                                 email: a.email,         
-                                avatar:a.avatar    
+                                avatar:<img src={a.avatar} alt={a.id}/>
                             }
                         })
                     }
